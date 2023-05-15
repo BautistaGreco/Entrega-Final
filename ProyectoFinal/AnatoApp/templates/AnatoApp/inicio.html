@@ -1,0 +1,59 @@
+{% extends "AnatoApp/plantilla.html" %}
+{% load static %}
+
+
+{% block cambioTitulo %}
+                <h1 class="mb-1">Catedra de Anatomia</h1>
+                <h3 class="mb-5"><em>Comisiones 7 y 8</em></h3>
+{% endblock %}
+
+{% block Alumnos %}
+        <!-- Alumnos-->
+        <section class="content-section bg-light" id="Alumnos">
+            <div class="container px-4 px-lg-5 text-center">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-lg-10"> 
+                        <h2>Alumnos</h2>
+                        <p class="lead mb-5">
+                            <bold>Aqui podra registrarse y acceder a su informacion sobre la cursada</bold>
+                        </p>
+                        <a class="btn btn-dark btn-xl" href="alumnosFormulario">Registrarse!</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+{% endblock %}
+
+{% block Asistencias %}
+        <!-- Asistencias-->
+        <section class="content-section bg-primary text-white text-center" id="Asistencias">
+            <div class="container px-4 px-lg-5">
+                <div class="content-section-heading">
+                    <h2 class="mb-5">Asistencias</h2>
+                    <h3 class="text-secondary mb-0">Aqui podra registrar y verificar las asistencias a clase</h3>
+                    <br>
+                    <a class="btn btn-dark btn-xl" href="asistenciasFormulario">Registrar!</a>
+                    <a class="btn btn-dark btn-xl" href="busquedaAsistencia">Verificar!</a>
+                </div>
+            </div>
+        </section>
+
+{% endblock %}
+
+{% block Profesores %}
+        <!-- Profesores-->
+        <section class="callout" id="Profesores">
+            <div class="container px-4 px-lg-5 text-center">
+                <h2 class="mx-auto mb-5">
+                    Profesores
+                </h2>
+                <a class="btn btn-primary btn-xl" href="profesoresFormulario">Ingresar!</a>
+            </div>
+        </section>
+
+{% endblock %}
+
+{% block Footer %}
+<p class="text-muted small mb-0">Copyright &copy; AnatoApp 2023</p>
+{% endblock %}
