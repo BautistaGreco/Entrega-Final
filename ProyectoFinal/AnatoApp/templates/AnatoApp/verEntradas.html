@@ -1,0 +1,4 @@
+{% for entrada in entradas %}
+  <h2><a href="{% url 'VerEntrada' entrada.id %}">{{ entrada.titulo }}</a></h2>
+{% endfor %}
+

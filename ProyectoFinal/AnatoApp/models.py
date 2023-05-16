@@ -30,3 +30,12 @@ class Asistencias(models.Model):
     clase = models.CharField(max_length=40)
     presente = models.BooleanField()
 
+
+from django.contrib.auth.models import User
+
+class Entrada(models.Model):
+    titulo = models.CharField(max_length=100)
+    subtitulo = models.CharField(max_length=100)
+    cuerpo = models.TextField()
+    fecha = models.DateField(auto_now_add=True) 
+    autor = models.ForeignKey(User, on_delete=models.CASCADE)  

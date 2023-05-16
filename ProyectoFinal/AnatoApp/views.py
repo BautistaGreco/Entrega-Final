@@ -42,3 +42,48 @@ def login_request(request):
             return render(request, "AnatoApp/errorLogIn.html", {"mensaje":"Formulario erroneo"})
     form = AuthenticationForm()
     return render(request, "AnatoApp/login.html", {"form": form})
+
+
+from AnatoApp.forms import EntradaForm
+
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def ingresarEntrada(request):
+    if request.method == "POST":
+        form = EntradaForm(request.POST)
+        print (form)
+
+        if form.is_valid():
+            informacion = form.cleaned_data
+            entrada = form.save(commit=False)  # Crear una instancia del modelo pero no guardarla todavía
+            entrada.autor = request.user  # Asignar el autor actual
+            entrada.save()  # Guardar la instancia
+            return render(request, 'AnatoApp/inicio.html')
+    else:
+        form = EntradaForm()
+        
+    contexto = {"form": form}
+    return render(request, "AnatoApp/ingresarEntrada.html", contexto)
+
+
+from AnatoApp.models import Entrada
+
+
+def verEntradas(request): #Lista de entrads
+    entradas = Entrada.objects.all()
+    contexto = {"entradas": entradas}
+    return render(request, "AnatoApp/verEntradas.html", contexto)
+
+
+def verEntrada(request, entrada_id): #Ingresar a una
+    entrada = Entrada.objects.get(id=entrada_id)
+    contexto = {"entrada": entrada}
+    return render(request, "AnatoApp/verEntrada.html", contexto)
+
+def blog (request):
+    return render (request, 'AnatoApp/blog.html')
+
+
+
+
