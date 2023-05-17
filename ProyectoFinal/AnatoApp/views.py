@@ -108,6 +108,7 @@ def editarPerfil(request):
 
 from .forms import AsistenciasFormulario
 
+@login_required
 def asistenciasFormulario(request):
      if request.method == "POST":
           miFormulario = AsistenciasFormulario(request.POST)
@@ -120,6 +121,7 @@ def asistenciasFormulario(request):
      else:
           miFormulario = AsistenciasFormulario()
      return render (request,"AnatoApp/asistenciasFormulario.html", {"miFormulario":miFormulario})
+
 
 
 def busquedaAsistencia (request):
