@@ -20,7 +20,7 @@ def register(request):
       else:
             #form = UserCreationForm()       
             form = UserRegisterForm()     
-      return render(request,"AnatoApp/registro.html" ,  {"form":form})
+      return render(request,"AnatoApp/register.html" ,  {"form":form})
 
 
 from django.contrib.auth.forms import AuthenticationForm 
