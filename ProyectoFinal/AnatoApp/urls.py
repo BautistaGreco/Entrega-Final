@@ -13,5 +13,9 @@ urlpatterns = [
     path('verEntradas', views.verEntradas, name='VerEntradas'),
     path('verEntrada/<int:entrada_id>/', views.verEntrada, name='VerEntrada'),
     path('blog', views.blog, name='Blog'),
-    path('editarPerfil', views.editarPerfil, name="EditarPerfil"), 
+    path('editarPerfil', views.editarPerfil, name="EditarPerfil"),
+    path('about', views.about, name='About'),
+    path('asistenciasFormulario', views.asistenciasFormulario, name='AsistenciasFormulario'),
+    path('busquedaAsistencia', views.busquedaAsistencia, name='BusquedaAsistencia'),
+    path('buscar/', views.buscar),
 ]

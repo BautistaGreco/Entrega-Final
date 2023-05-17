@@ -6,6 +6,8 @@ def inicio (request):
     return render (request, 'AnatoApp/inicio.html')
 def usuario (request):
     return render (request, 'AnatoApp/usuario.html')
+def about (request):
+    return render (request, 'AnatoApp/about.html')
 
 
 from AnatoApp.forms import UserRegisterForm
@@ -103,3 +105,35 @@ def editarPerfil(request):
 
         miFormulario = UserEditForm(initial={'email': usuario.email})
     return render(request, "AnatoApp/editarPerfil.html", {"miFormulario": miFormulario, "usuario": usuario})
+
+from .forms import AsistenciasFormulario
+
+def asistenciasFormulario(request):
+     if request.method == "POST":
+          miFormulario = AsistenciasFormulario(request.POST)
+          print (miFormulario)
+          if miFormulario.is_valid:
+               informacion = miFormulario.cleaned_data
+               asistencia = Asistencias (nombre = informacion["nombre"], comision = informacion["comision"], clase = informacion["clase"], presente = informacion["presente"])
+               asistencia.save()
+               return render (request, "AnatoApp/inicio.html")
+     else:
+          miFormulario = AsistenciasFormulario()
+     return render (request,"AnatoApp/asistenciasFormulario.html", {"miFormulario":miFormulario})
+
+
+def busquedaAsistencia (request):
+     return render (request, "AnatoApp/busquedaAsistencia.html")
+
+from .models import Asistencias
+from django.http import HttpResponse
+
+def buscar(request):
+     if request.GET["nombre"]:
+          nombre = request.GET["nombre"]
+          asistencias = Asistencias.objects.filter(nombre__icontains=nombre)
+
+          return render (request, "AnatoApp/resultadosBusqueda.html", {"asistencias":asistencias, "nombre":nombre})
+     else:
+          respuesta = "no enviaste datos"
+     return HttpResponse (respuesta)

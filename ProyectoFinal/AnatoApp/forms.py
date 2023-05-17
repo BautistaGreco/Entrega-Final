@@ -34,3 +34,10 @@ class UserEditForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['email', 'password1', 'password2', 'last_name', 'first_name']
+
+
+class AsistenciasFormulario(forms.Form):
+    nombre = forms.CharField()
+    comision = forms.IntegerField()
+    clase = forms.CharField()
+    presente = forms.BooleanField()

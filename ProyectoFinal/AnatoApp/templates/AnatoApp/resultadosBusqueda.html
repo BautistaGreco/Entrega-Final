@@ -1,0 +1,14 @@
+<p> Buscando los presente de {{nombre}}</p>
+
+{% if asistencias %}
+
+<ul>
+    {% for presente in asistencias %}
+        <li> {{presente.clase}} </li>
+    {% endfor %}
+</ul>
+
+{% else %}
+    <p> No se encontraron asistencias para {{nombre}}</p>
+
+{% endif %}
