@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 
 # Create your views here.
@@ -11,7 +11,6 @@ def usuario (request):
 from AnatoApp.forms import UserRegisterForm
 def register(request):
       if request.method == 'POST':
-            #form = UserCreationForm(request.POST)
             form = UserRegisterForm(request.POST)
             if form.is_valid():
                   username = form.cleaned_data['username']
@@ -41,7 +40,7 @@ def login_request(request):
         else:
             return render(request, "AnatoApp/errorLogIn.html", {"mensaje":"Formulario erroneo"})
     form = AuthenticationForm()
-    return render(request, "AnatoApp/login.html", {"form": form})
+    return render(request, "AnatoApp/logIn.html", {"form": form})
 
 
 from AnatoApp.forms import EntradaForm
@@ -84,6 +83,23 @@ def verEntrada(request, entrada_id): #Ingresar a una
 def blog (request):
     return render (request, 'AnatoApp/blog.html')
 
+from .forms import UserEditForm
 
+@login_required
+def editarPerfil(request):
+    usuario = request.user
+    if request.method == 'POST':
+        miFormulario = UserEditForm(request.POST)
+        if miFormulario.is_valid():
+            informacion = miFormulario.cleaned_data
+            usuario.email = informacion['email']
+            usuario.password1 = informacion['password1']
+            usuario.password2 = informacion['password2']
+            usuario.last_name = informacion['last_name']
+            usuario.first_name = informacion['first_name']
+            usuario.save()
+            return render(request, "AnatoApp/inicio.html")
+    else:
 
-
+        miFormulario = UserEditForm(initial={'email': usuario.email})
+    return render(request, "AnatoApp/editarPerfil.html", {"miFormulario": miFormulario, "usuario": usuario})

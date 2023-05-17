@@ -23,6 +23,7 @@
                         {% endif %}
                         {% if request.user.is_authenticated %}
                             <a class="btn btn-dark btn-xl" href="blog">Publicaciones</a>
+                            <a class="btn btn-dark btn-xl" href="editarPerfil">Editar Perfil</a>
                             <a class="btn btn-dark btn-xl" href="logout">Cerrar Sesion</a>  
                         {% endif %}
                     </div>
@@ -50,10 +51,10 @@
 
 {% block Profesores %}
         <!-- Profesores-->
-        <section class="callout" id="Profesores">
+        <section class="callout" id="About">
             <div class="container px-4 px-lg-5 text-center">
                 <h2 class="mx-auto mb-5">
-                    Profesores
+                    About
                 </h2>
                 <a class="btn btn-primary btn-xl" href="profesoresFormulario">Ingresar!</a>
             </div>
