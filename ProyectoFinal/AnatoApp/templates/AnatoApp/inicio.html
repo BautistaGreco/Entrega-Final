@@ -18,7 +18,7 @@
                             <bold>Aqui podra registrarse y acceder a su informacion sobre la cursada</bold>
                         </p>
                         {% if not request.user.is_authenticated %}
-                            <a class="btn btn-dark btn-xl" href="registro">Registrarse</a>
+                            <a class="btn btn-dark btn-xl" href="register">Registrarse</a>
                             <a class="btn btn-dark btn-xl" href="login">Iniciar Sesion</a>
                         {% endif %}
                         {% if request.user.is_authenticated %}

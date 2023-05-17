@@ -21,4 +21,4 @@ class AlumnoForm(forms.ModelForm):
 
     class Meta:
         model = Alumno
-        fields = ['nombre', 'comision', 'email', 'password']
+        fields = ['username', 'email', 'password']
