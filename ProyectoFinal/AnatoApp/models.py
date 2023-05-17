@@ -13,10 +13,10 @@ class Alumno(AbstractUser):
     password = models.CharField(max_length=128, default='valor_predeterminado')
     username = models.CharField(max_length=150, unique=True, default='asd')
     def __str__(self):
-        return self.username
+        return f"Nombre: {self.nombre} - Comision {self.comision}"
+    nombre = models.CharField(max_length=40)
+    comision = models.IntegerField()
     email = models.EmailField()
-
-        
     
 
 class Profesor(models.Model):
