@@ -1,12 +1,19 @@
 from django import forms
 from django.db import models
-from .models import Alumno
 
 
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
-
+class UserRegisterForm(UserCreationForm):
+    email = forms.EmailField()
+    password1 = forms.CharField(label="Contraseña", widget=forms.PasswordInput)
+    password2 = forms.CharField(label="Repetir contraseña", widget=forms.PasswordInput)
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']
+        # Saca los mensajes de ayuda
+        help_texts = {k:"" for k in fields}
 
 from AnatoApp.models import Entrada
 
@@ -14,11 +21,3 @@ class EntradaForm(forms.ModelForm):
     class Meta:
         model = Entrada
         fields = ['titulo', 'subtitulo', 'cuerpo']
-
-
-class AlumnoForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput)
-
-    class Meta:
-        model = Alumno
-        fields = ['nombre', 'comision', 'email', 'password']

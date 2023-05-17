@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 
 
 # Create your views here.
@@ -8,19 +8,19 @@ def usuario (request):
     return render (request, 'AnatoApp/usuario.html')
 
 
-#from AnatoApp.forms import UserRegisterForm
-#def register(request):
-#      if request.method == 'POST':
-#            #form = UserCreationForm(request.POST)
-#            form = UserRegisterForm(request.POST)
-#            if form.is_valid():
-#                  username = form.cleaned_data['username']
-#                  form.save()
-#                  return render(request,"AnatoApp/inicio.html" ,  {"mensaje":"Usuario Creado :)"})
-#      else:
-#            #form = UserCreationForm()       
-#            form = UserRegisterForm()     
-#      return render(request,"AnatoApp/registro.html" ,  {"form":form})
+from AnatoApp.forms import UserRegisterForm
+def register(request):
+      if request.method == 'POST':
+            #form = UserCreationForm(request.POST)
+            form = UserRegisterForm(request.POST)
+            if form.is_valid():
+                  username = form.cleaned_data['username']
+                  form.save()
+                  return render(request,"AnatoApp/inicio.html" ,  {"mensaje":"Usuario Creado :)"})
+      else:
+            #form = UserCreationForm()       
+            form = UserRegisterForm()     
+      return render(request,"AnatoApp/registro.html" ,  {"form":form})
 
 
 from django.contrib.auth.forms import AuthenticationForm 
@@ -84,17 +84,6 @@ def verEntrada(request, entrada_id): #Ingresar a una
 def blog (request):
     return render (request, 'AnatoApp/blog.html')
 
-from .forms import AlumnoForm
 
-def registro(request):
-    if request.method == 'POST':
-        form = AlumnoForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return render(request,"AnatoApp/inicio.html") 
-    else:
-        form = AlumnoForm()
-    
-    return render(request,'AnatoApp/registro.html', {"form":form})
 
 
