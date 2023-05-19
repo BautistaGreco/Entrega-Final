@@ -1,3 +1,8 @@
+{% extends "AnatoApp/pagina2.html" %}
+{% load static %}
+
+{% block Alumnos %}
+
 <form action="/AnatoApp/buscar" method="GET">
 
     <label for="nombre">Ingrese su nombre:</label>
@@ -8,3 +13,5 @@
 
 
 </form>
+
+{% endblock %}

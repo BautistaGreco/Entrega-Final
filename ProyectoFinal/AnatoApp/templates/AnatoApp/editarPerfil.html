@@ -1,3 +1,8 @@
+{% extends "AnatoApp/pagina2.html" %}
+{% load static %}
+
+{% block Alumnos %}
+
 <h1>Formulario - Editar Perfil</h1>
 <h1>De {{usuario}}</h1>
 <form action="" method="POST">{% csrf_token %}
@@ -6,3 +11,5 @@
     </table>
     <input type="submit", value="Enviar">
 </form>  
+
+{% endblock %}

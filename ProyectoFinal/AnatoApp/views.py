@@ -52,20 +52,19 @@ from django.contrib.auth.decorators import login_required
 def ingresarEntrada(request):
     if request.method == "POST":
         form = EntradaForm(request.POST)
-        print (form)
-
         if form.is_valid():
             informacion = form.cleaned_data
-            entrada = form.save(commit=False)  
-            entrada.autor = request.user  
+            entrada = Entrada (titulo=informacion['titulo'], subtitulo=informacion['subtitulo'], cuerpo=informacion['cuerpo'])
+            entrada.autor = request.user 
             entrada.save() 
             return render(request, 'AnatoApp/inicio.html')
+        else:
+            print (form.errors)
     else:
         form = EntradaForm()
         
     contexto = {"form": form}
     return render(request, "AnatoApp/ingresarEntrada.html", contexto)
-
 
 from AnatoApp.models import Entrada
 
@@ -107,7 +106,7 @@ def editarPerfil(request):
 
 from .forms import AsistenciasFormulario
 
-@login_required
+
 def asistenciasFormulario(request):
      if request.method == "POST":
           miFormulario = AsistenciasFormulario(request.POST)
