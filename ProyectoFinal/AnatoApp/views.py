@@ -139,3 +139,46 @@ def buscar(request):
      else:
           respuesta = "no enviaste datos"
      return HttpResponse (respuesta)
+
+
+def leerAsistencias(request):
+    asistencias= Asistencias.objects.all() 
+    contexto= {"asistencias": asistencias}
+    return render(request, "AnatoApp/leerAsistencias.html",contexto)
+
+
+def eliminarAsistencias(request, asistencia_nombre):
+    asistencia = Asistencias.objects.get(nombre=asistencia_nombre)
+    asistencia.delete()
+    asistencias = Asistencias.objects.all()  
+    contexto = {"asistencias": asistencias}
+    return render(request, "AnatoApp/leerAsistencias.html", contexto)
+
+from django.urls import reverse
+
+def editarAsistencia(request, asistencia_nombre):
+    # Recibe el nombre de la asistencia que vamos a modificar
+    asistencia = Asistencias.objects.get(nombre=asistencia_nombre)
+    # Si es metodo POST hago lo mismo que el agregar
+    if request.method == 'POST':
+        # aquí llega toda la información del html
+        miFormulario = AsistenciasFormulario(request.POST)
+        print(miFormulario)
+        if miFormulario.is_valid:  
+            informacion = miFormulario.cleaned_data
+
+            asistencia.nombre = informacion['nombre']
+            asistencia.comision = informacion['comision']
+            asistencia.clase = informacion['clase']
+            asistencia.presente = informacion['presente']
+            asistencia.save()
+
+            return render(request, "AnatoApp/inicio.html")
+    # En caso que no sea post
+    else:
+        # Creo el formulario con los datos que voy a modificar
+        miFormulario = AsistenciasFormulario(initial={'nombre': asistencia.nombre, 'comision': asistencia.comision,
+                                                   'clase': asistencia.clase, 'presente': asistencia.presente})
+    # Voy al html que me permite editar
+    return render(request, "AnatoApp/editarAsistencia.html", {"miFormulario": miFormulario, "asistencia_nombre": asistencia_nombre})
+

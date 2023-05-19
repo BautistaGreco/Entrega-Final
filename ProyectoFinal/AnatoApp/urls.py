@@ -18,4 +18,7 @@ urlpatterns = [
     path('asistenciasFormulario', views.asistenciasFormulario, name='AsistenciasFormulario'),
     path('busquedaAsistencia', views.busquedaAsistencia, name='BusquedaAsistencia'),
     path('buscar/', views.buscar),
+    path('leerAsistencias',views.leerAsistencias,name='LeerAsistencias'),
+    path('eliminarAsistencia/<asistencia_nombre>/', views.eliminarAsistencias, name="EliminarAsistencia"),
+    path('editarAsistencia/<asistencia_nombre>/', views.editarAsistencia, name="EditarAsistencia"),
 ]
