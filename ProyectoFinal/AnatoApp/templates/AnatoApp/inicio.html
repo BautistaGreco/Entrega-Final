@@ -41,8 +41,11 @@
                     <h2 class="mb-5">Asistencias</h2>
                     <h3 class="text-secondary mb-0">Aqui podra registrar y verificar las asistencias a clase</h3>
                     <br>
-                    <a class="btn btn-dark btn-xl" href="asistenciasFormulario">Registrar!</a>
-                    <a class="btn btn-dark btn-xl" href="busquedaAsistencia">Verificar!</a>
+                    <a class="btn btn-dark btn-xl" href="asistenciasFormulario">Registrar</a>
+                    <a class="btn btn-dark btn-xl" href="busquedaAsistencia">Verificar</a>
+                    {% if request.user.is_authenticated and request.user.is_staff %}
+                    <a class="btn btn-dark btn-xl" href="leerAsistencias">Administrar</a>
+                    {% endif %}
                 </div>
             </div>
         </section>
@@ -50,7 +53,7 @@
 {% endblock %}
 
 {% block Profesores %}
-        <!-- Profesores-->
+        <!-- About-->
         <section class="callout" id="About">
             <div class="container px-4 px-lg-5 text-center">
                 <h2 class="mx-auto mb-5">

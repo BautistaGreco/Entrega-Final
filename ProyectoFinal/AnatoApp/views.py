@@ -18,8 +18,7 @@ def register(request):
                   username = form.cleaned_data['username']
                   form.save()
                   return render(request,"AnatoApp/inicio.html" ,  {"mensaje":"Usuario Creado :)"})
-      else:
-            #form = UserCreationForm()       
+      else:       
             form = UserRegisterForm()     
       return render(request,"AnatoApp/register.html" ,  {"form":form})
 
@@ -30,7 +29,7 @@ from django.contrib.auth import login,logout,authenticate
 def login_request(request):
     if request.method == 'POST':
         form = AuthenticationForm(request, data = request.POST)
-        if form.is_valid():  # Si pasó la validación de Django
+        if form.is_valid():  
             usuario = form.cleaned_data.get('username')
             contrasenia = form.cleaned_data.get('password')
             user = authenticate(username= usuario, password=contrasenia)
@@ -57,9 +56,9 @@ def ingresarEntrada(request):
 
         if form.is_valid():
             informacion = form.cleaned_data
-            entrada = form.save(commit=False)  # Crear una instancia del modelo pero no guardarla todavía
-            entrada.autor = request.user  # Asignar el autor actual
-            entrada.save()  # Guardar la instancia
+            entrada = form.save(commit=False)  
+            entrada.autor = request.user  
+            entrada.save() 
             return render(request, 'AnatoApp/inicio.html')
     else:
         form = EntradaForm()
