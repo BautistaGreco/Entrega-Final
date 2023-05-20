@@ -1,9 +1,6 @@
 <h2>{{ entrada.titulo }}</h2>
 <h3>{{ entrada.subtitulo }}</h3>
 <p>{{ entrada.cuerpo }}</p>
-{% if entrada.imagen %}
-    <img src="{{ Entrada.imagen.url }}" alt="Imagen de la entrada">
-{% endif %}
 <p>Fecha: {{ entrada.fecha }}</p>
 <p>Autor: {{ entrada.autor.username }}</p>
 

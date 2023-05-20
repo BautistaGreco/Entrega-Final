@@ -8,6 +8,12 @@
     {% for entrada in entradas %}
       <li>
         <a class="btn btn-dark btn-xl" href="{% url 'VerEntrada' entrada.id %}">{{ entrada.titulo }}</a>
+        <button>
+          <a href="{% url 'EliminarEntrada' entrada.titulo %}">Eliminar</a>
+        </button>
+        <button>
+          <a href="{% url 'EditarEntrada' entrada.titulo %}">Editar</a>
+        </button>
       </li>
     {% endfor %}
   </ul>

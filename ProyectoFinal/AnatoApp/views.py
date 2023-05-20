@@ -17,7 +17,7 @@ def register(request):
             if form.is_valid():
                   username = form.cleaned_data['username']
                   form.save()
-                  return render(request,"AnatoApp/inicio.html" ,  {"mensaje":"Usuario Creado :)"})
+                  return render(request,"AnatoApp/register.html" ,  {"mensaje":"Usuario Creado :)"})
       else:       
             form = UserRegisterForm()     
       return render(request,"AnatoApp/register.html" ,  {"form":form})
@@ -138,12 +138,22 @@ def buscar(request):
           respuesta = "no enviaste datos"
      return HttpResponse (respuesta)
 
+def leerEntradas (request):
+    entradas= Entrada.objects.all()
+    contexto= {"entradas": entradas}
+    return render(request, "AnatoApp/leerEntradas.html",contexto)
 
 def leerAsistencias(request):
     asistencias= Asistencias.objects.all() 
     contexto= {"asistencias": asistencias}
     return render(request, "AnatoApp/leerAsistencias.html",contexto)
 
+def eliminarEntradas(request, entrada_titulo):
+    entrada = Entrada.objects.get(titulo=entrada_titulo)
+    entrada.delete()
+    entrada = Entrada.objects.all()  
+    contexto = {"entrada": entrada}
+    return render(request, "AnatoApp/leerEntradas.html", contexto)
 
 def eliminarAsistencias(request, asistencia_nombre):
     asistencia = Asistencias.objects.get(nombre=asistencia_nombre)
@@ -179,4 +189,27 @@ def editarAsistencia(request, asistencia_nombre):
                                                    'clase': asistencia.clase, 'presente': asistencia.presente})
     # Voy al html que me permite editar
     return render(request, "AnatoApp/editarAsistencia.html", {"miFormulario": miFormulario, "asistencia_nombre": asistencia_nombre})
+
+
+
+def editarEntrada(request, entrada_titulo):
+    entrada = Entrada.objects.get(titulo=entrada_titulo)
+    if request.method == 'POST':
+        miFormulario = EntradaForm(request.POST)
+        print(miFormulario)
+        if miFormulario.is_valid:  
+            informacion = miFormulario.cleaned_data
+
+            entrada.titulo = informacion['titulo']
+            entrada.subtitulo = informacion['subtitulo']
+            entrada.cuerpo = informacion['cuerpo']
+            entrada.save()
+
+            return render(request, "AnatoApp/inicio.html")
+
+    else:
+        miFormulario = EntradaForm(initial={'titulo': entrada.titulo, 'subtitulo': entrada.subtitulo,
+                                                   'cuerpo': entrada.cuerpo})
+
+    return render(request, "AnatoApp/editarEntrada.html", {"miFormulario": miFormulario, "entrada_titulo": entrada_titulo})
 

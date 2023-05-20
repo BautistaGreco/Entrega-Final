@@ -12,20 +12,15 @@
     <title>Document</title>
 </head>
 <body>
-    {% for p in asistencias %} 
+    {% for p in entradas %} 
         <li>{{p}}</li>
         <button>
-            <a href="{% url 'EliminarAsistencia' p.nombre %}"> Eliminar</a>
-        </button>
-        <button>
-            <a href="{% url 'EditarAsistencia' p.nombre %}">Editar</a>
+            <a href="{% url 'EliminarEntrada' p.titulo %}"> Eliminar</a>
+            <a href="{% url 'EditarEntrada' p.titulo %}"> Editar</a>
         </button>
     {% endfor %}
     <p> </p>
-    <a href="{% url 'AsistenciasFormulario' %}">Agregar asistencias</a>
 </body>
 </html>
 
 {% endblock %}
-
-
