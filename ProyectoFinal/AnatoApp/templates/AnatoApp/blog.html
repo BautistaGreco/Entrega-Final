@@ -9,5 +9,10 @@
   <p>
     <a class="btn btn-dark btn-xl" href="ingresarEntrada">Escribir nueva entrada</a>
   </p>
+  {% if request.user.is_authenticated and request.user.is_staff %}
+    <p>
+     <a class="btn btn-dark btn-xl" href="verEntradasAdmin">Administrar publicaciones</a>
+   </p>
+  {% endif %}
 
 {% endblock %}

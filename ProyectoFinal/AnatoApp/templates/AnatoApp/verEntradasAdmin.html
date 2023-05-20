@@ -1,3 +1,6 @@
+
+
+
 {% extends "AnatoApp/pagina2.html" %}
 {% load static %}
 
@@ -6,9 +9,15 @@
 {% if entradas %}
   <ul>
     {% for entrada in entradas %}
-      <li>
+    <li>
         <a class="btn btn-dark btn-xl" href="{% url 'VerEntrada' entrada.id %}">{{ entrada.titulo }}</a>
-      </li>
+        <button>
+            <a href="{% url 'EliminarEntrada' entrada.titulo %}">Eliminar</a>
+          </button>
+          <button>
+            <a href="{% url 'EditarEntrada' entrada.titulo %}">Editar</a>
+          </button>
+    </li>
     {% endfor %}
   </ul>
 {% else %}
@@ -16,5 +25,3 @@
 {% endif %}
 
 {% endblock %}
-
-

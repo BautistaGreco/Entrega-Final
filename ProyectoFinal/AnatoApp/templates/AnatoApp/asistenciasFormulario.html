@@ -2,22 +2,29 @@
 {% load static %}
 
 {% block Alumnos %}
+{% if request.user.is_authenticated %}
 
-{% if miFormulario.errors %}
-<p style="color:red"> Estan mal los datos, revisar</p>
-{% endif %}
+    {% if miFormulario.errors %}
+    <p style="color:red"> Estan mal los datos, revisar</p>
+    {% endif %}
 
-<form action="" method="POST">{% csrf_token %}
+    <form action="" method="POST">{% csrf_token %}
 
-    <table>
+        <table>
 
         {{ miFormulario.as_table }}
 
-    </table>
+        </table>
 
 
-    <input type="submit", value="Enviar">
+     <input type="submit", value="Enviar">
 
-</form>
+    </form>
+{% endif %}
+
+{% if not request.user.is_authenticated %}
+Debe iniciar sesion para ingresar. 
+<a class="btn btn-dark btn-xl" href="logIn">Iniciar Sesion</a>
+{% endif %}
 
 {% endblock %}

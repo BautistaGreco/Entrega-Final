@@ -11,6 +11,7 @@ urlpatterns = [
     path('logout', LogoutView.as_view(template_name='AnatoApp/logout.html'), name = 'Logout'),
     path('ingresarEntrada', views.ingresarEntrada, name='IngresarEntrada'),
     path('verEntradas', views.verEntradas, name='VerEntradas'),
+    path('verEntradasAdmin', views.verEntradasAdmin, name='VerEntradasAdmin'),
     path('verEntrada/<int:entrada_id>/', views.verEntrada, name='VerEntrada'),
     path('blog', views.blog, name='Blog'),
     path('editarPerfil', views.editarPerfil, name="EditarPerfil"),

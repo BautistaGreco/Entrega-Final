@@ -74,6 +74,11 @@ def verEntradas(request): #Lista de entrads
     contexto = {"entradas": entradas}
     return render(request, "AnatoApp/verEntradas.html", contexto)
 
+def verEntradasAdmin(request): #Lista de entrads
+    entradas = Entrada.objects.all()
+    contexto = {"entradas": entradas}
+    return render(request, "AnatoApp/verEntradasAdmin.html", contexto)
+
 
 def verEntrada(request, entrada_id): #Ingresar a una
     entrada = Entrada.objects.get(id=entrada_id)
@@ -142,6 +147,7 @@ def leerEntradas (request):
     entradas= Entrada.objects.all()
     contexto= {"entradas": entradas}
     return render(request, "AnatoApp/leerEntradas.html",contexto)
+
 
 def leerAsistencias(request):
     asistencias= Asistencias.objects.all() 
