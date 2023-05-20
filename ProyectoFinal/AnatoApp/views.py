@@ -17,7 +17,7 @@ def register(request):
             if form.is_valid():
                   username = form.cleaned_data['username']
                   form.save()
-                  return render(request,"AnatoApp/register.html" ,  {"mensaje":"Usuario Creado :)"})
+                  return redirect('http://127.0.0.1:8000/AnatoApp/')
       else:       
             form = UserRegisterForm()     
       return render(request,"AnatoApp/register.html" ,  {"form":form})
@@ -57,7 +57,7 @@ def ingresarEntrada(request):
             entrada = Entrada (titulo=informacion['titulo'], subtitulo=informacion['subtitulo'], cuerpo=informacion['cuerpo'])
             entrada.autor = request.user 
             entrada.save() 
-            return render(request, 'AnatoApp/inicio.html')
+            return redirect('http://127.0.0.1:8000/AnatoApp/')
         else:
             print (form.errors)
     else:
@@ -103,7 +103,7 @@ def editarPerfil(request):
             usuario.last_name = informacion['last_name']
             usuario.first_name = informacion['first_name']
             usuario.save()
-            return render(request, "AnatoApp/inicio.html")
+            return redirect('http://127.0.0.1:8000/AnatoApp/')
     else:
 
         miFormulario = UserEditForm(initial={'email': usuario.email})
@@ -120,7 +120,7 @@ def asistenciasFormulario(request):
                informacion = miFormulario.cleaned_data
                asistencia = Asistencias (nombre = informacion["nombre"], comision = informacion["comision"], clase = informacion["clase"], presente = informacion["presente"])
                asistencia.save()
-               return render (request, "AnatoApp/inicio.html")
+               return redirect('http://127.0.0.1:8000/AnatoApp/')
      else:
           miFormulario = AsistenciasFormulario()
      return render (request,"AnatoApp/asistenciasFormulario.html", {"miFormulario":miFormulario})
@@ -159,14 +159,14 @@ def eliminarEntradas(request, entrada_titulo):
     entrada.delete()
     entrada = Entrada.objects.all()  
     contexto = {"entrada": entrada}
-    return render(request, "AnatoApp/leerEntradas.html", contexto)
+    return redirect('http://127.0.0.1:8000/AnatoApp/')
 
 def eliminarAsistencias(request, asistencia_nombre):
     asistencia = Asistencias.objects.get(nombre=asistencia_nombre)
     asistencia.delete()
     asistencias = Asistencias.objects.all()  
     contexto = {"asistencias": asistencias}
-    return render(request, "AnatoApp/leerAsistencias.html", contexto)
+    return redirect('http://127.0.0.1:8000/AnatoApp/')
 
 from django.urls import reverse
 
@@ -187,7 +187,7 @@ def editarAsistencia(request, asistencia_nombre):
             asistencia.presente = informacion['presente']
             asistencia.save()
 
-            return render(request, "AnatoApp/inicio.html")
+            return redirect('http://127.0.0.1:8000/AnatoApp/leerAsistencias')
     # En caso que no sea post
     else:
         # Creo el formulario con los datos que voy a modificar
@@ -211,7 +211,7 @@ def editarEntrada(request, entrada_titulo):
             entrada.cuerpo = informacion['cuerpo']
             entrada.save()
 
-            return render(request, "AnatoApp/inicio.html")
+            return redirect('http://127.0.0.1:8000/AnatoApp/leerEntradas')
 
     else:
         miFormulario = EntradaForm(initial={'titulo': entrada.titulo, 'subtitulo': entrada.subtitulo,

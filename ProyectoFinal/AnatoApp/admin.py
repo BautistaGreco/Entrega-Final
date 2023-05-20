@@ -3,7 +3,5 @@ from .models import *
 
 # Register your models here.
 
-admin.site.register(Alumno)
-admin.site.register(Profesor)
 admin.site.register(Asistencias)
 admin.site.register(Entrada)
