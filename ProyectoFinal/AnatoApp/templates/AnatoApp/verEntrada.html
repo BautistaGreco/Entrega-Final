@@ -16,11 +16,11 @@
     <p>Por: <i>{{ entrada.cuerpo }}</i></p>
     <p>Fecha: <i>{{ entrada.fecha }}</i></p>
     <p><i>{{ entrada.autor.username }}</i></p>
-
-    <img style="height:150px" src="{{ entrada.imagen.url }}" alt="Imagen">
-    
+    {% if entrada.imagen %}
+        <img style="height:150px" src="{{ entrada.imagen.url }}" alt="Imagen">
+    {% endif %}
     <p>
-        <h2><a href="http://127.0.0.1:8000/AnatoApp/">Volver a inicio</a></h2>
+        <h2><a href="http://127.0.0.1:8000/AnatoApp/verEntradas">Volver a publicaciones</a></h2>
     </p>
 </body>
 </div>

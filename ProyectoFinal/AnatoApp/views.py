@@ -46,7 +46,12 @@ def login_request(request):
 
 from AnatoApp.forms import EntradaForm
 
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
+
+#Decorador permiso staff
+def staff_member_required(view_func):
+    return login_required(user_passes_test(lambda u: u.is_active and u.is_staff)(view_func))
+
 
 @login_required
 def ingresarEntrada(request):
@@ -154,6 +159,7 @@ def leerAsistencias(request):
     contexto= {"asistencias": asistencias}
     return render(request, "AnatoApp/leerAsistencias.html",contexto)
 
+@staff_member_required
 def eliminarEntradas(request, entrada_titulo):
     entrada = Entrada.objects.get(titulo=entrada_titulo)
     entrada.delete()
@@ -161,6 +167,7 @@ def eliminarEntradas(request, entrada_titulo):
     contexto = {"entrada": entrada}
     return redirect('http://127.0.0.1:8000/AnatoApp/')
 
+@staff_member_required
 def eliminarAsistencias(request, asistencia_nombre):
     asistencia = Asistencias.objects.get(nombre=asistencia_nombre)
     asistencia.delete()
@@ -170,6 +177,7 @@ def eliminarAsistencias(request, asistencia_nombre):
 
 from django.urls import reverse
 
+@staff_member_required
 def editarAsistencia(request, asistencia_nombre):
     # Recibe el nombre de la asistencia que vamos a modificar
     asistencia = Asistencias.objects.get(nombre=asistencia_nombre)
@@ -197,7 +205,7 @@ def editarAsistencia(request, asistencia_nombre):
     return render(request, "AnatoApp/editarAsistencia.html", {"miFormulario": miFormulario, "asistencia_nombre": asistencia_nombre})
 
 
-
+@staff_member_required
 def editarEntrada(request, entrada_titulo):
     entrada = Entrada.objects.get(titulo=entrada_titulo)
     if request.method == "POST":
@@ -210,7 +218,7 @@ def editarEntrada(request, entrada_titulo):
             entrada.subtitulo=informacion['subtitulo']
             entrada.cuerpo=informacion['cuerpo']
             entrada.imagen=informacion['imagen']
-            
+
             entrada.autor = request.user 
             entrada.save() 
 
