@@ -51,10 +51,10 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def ingresarEntrada(request):
     if request.method == "POST":
-        form = EntradaForm(request.POST, request.FILES)
+        form = EntradaForm(request.POST)
         if form.is_valid():
             informacion = form.cleaned_data
-            entrada = Entrada (titulo=informacion['titulo'], subtitulo=informacion['subtitulo'], cuerpo=informacion['cuerpo'], imagen=informacion['imagen'])
+            entrada = Entrada (titulo=informacion['titulo'], subtitulo=informacion['subtitulo'], cuerpo=informacion['cuerpo'])
             entrada.autor = request.user 
             entrada.save() 
             return redirect('http://127.0.0.1:8000/AnatoApp/')

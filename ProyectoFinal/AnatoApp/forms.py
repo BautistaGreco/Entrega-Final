@@ -20,7 +20,8 @@ from AnatoApp.models import Entrada
 class EntradaForm(forms.ModelForm):
     class Meta:
         model = Entrada
-        fields = ['titulo', 'subtitulo', 'cuerpo']
+        fields = ['titulo', 'subtitulo', 'cuerpo', 'imagen']
+        widgets = {'imagen': forms.FileInput()}
 
 
 class UserEditForm(UserCreationForm):
