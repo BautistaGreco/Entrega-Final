@@ -200,22 +200,25 @@ def editarAsistencia(request, asistencia_nombre):
 
 def editarEntrada(request, entrada_titulo):
     entrada = Entrada.objects.get(titulo=entrada_titulo)
-    if request.method == 'POST':
-        miFormulario = EntradaForm(request.POST)
+    if request.method == "POST":
+        miFormulario = EntradaForm(request.POST, request.FILES)
         print(miFormulario)
         if miFormulario.is_valid:  
             informacion = miFormulario.cleaned_data
 
-            entrada.titulo = informacion['titulo']
-            entrada.subtitulo = informacion['subtitulo']
-            entrada.cuerpo = informacion['cuerpo']
-            entrada.save()
+            entrada.titulo=informacion['titulo']
+            entrada.subtitulo=informacion['subtitulo']
+            entrada.cuerpo=informacion['cuerpo']
+            entrada.imagen=informacion['imagen']
+            
+            entrada.autor = request.user 
+            entrada.save() 
 
-            return redirect('http://127.0.0.1:8000/AnatoApp/leerEntradas')
+            return redirect('http://127.0.0.1:8000/AnatoApp/verEntradasAdmin')
 
     else:
         miFormulario = EntradaForm(initial={'titulo': entrada.titulo, 'subtitulo': entrada.subtitulo,
-                                                   'cuerpo': entrada.cuerpo})
+                                                   'cuerpo': entrada.cuerpo, 'imagen': entrada.imagen})
 
     return render(request, "AnatoApp/editarEntrada.html", {"miFormulario": miFormulario, "entrada_titulo": entrada_titulo})
 
