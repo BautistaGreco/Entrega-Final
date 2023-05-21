@@ -5,7 +5,7 @@ La aplicacion esta destinada a una catedra de la universidad nacional de la plat
 
 En ella los usuarios encuentran distintas funciones.
 
-#Usuario de prueba alumno#
+Usuario de prueba alumno
 Usuario: juan
 contraseña: coderhouse
 
@@ -20,7 +20,7 @@ Ademas pueden verificar las clases en las que estuvieron presentes mediantes el 
 
 Las funcionalidades cambian cuando el usuario que se ingresa pertenece al staff.
 
-#Usuario de prueba profesor (staff)#
+Usuario de prueba profesor (staff)
 Usuario: bautista
 contraseña: coderhouse
 
