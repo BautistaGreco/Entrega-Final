@@ -173,7 +173,7 @@ def eliminarAsistencias(request, asistencia_nombre):
     asistencia.delete()
     asistencias = Asistencias.objects.all()  
     contexto = {"asistencias": asistencias}
-    return redirect('http://127.0.0.1:8000/AnatoApp/')
+    return redirect('http://127.0.0.1:8000/AnatoApp/leerAsistencias')
 
 from django.urls import reverse
 
