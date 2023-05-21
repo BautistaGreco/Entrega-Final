@@ -103,8 +103,6 @@ def editarPerfil(request):
         if miFormulario.is_valid():
             informacion = miFormulario.cleaned_data
             usuario.email = informacion['email']
-            usuario.password1 = informacion['password1']
-            usuario.password2 = informacion['password2']
             usuario.last_name = informacion['last_name']
             usuario.first_name = informacion['first_name']
             usuario.save()

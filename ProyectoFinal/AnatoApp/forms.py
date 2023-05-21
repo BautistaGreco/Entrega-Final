@@ -34,7 +34,7 @@ class UserEditForm(UserCreationForm):
     first_name = forms.CharField()
     class Meta:
         model = User
-        fields = ['email', 'password1', 'password2', 'last_name', 'first_name']
+        fields = ['email', 'last_name', 'first_name']
 
 
 class AsistenciasFormulario(forms.Form):
