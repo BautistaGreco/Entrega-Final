@@ -5,9 +5,7 @@ La aplicacion esta destinada a una catedra de la universidad nacional de la plat
 
 En ella los usuarios encuentran distintas funciones.
 
-Usuario de prueba alumno
-Usuario: juan
-contraseña: coderhouse
+Usuario de prueba alumno - Usuario: juan - Contraseña: coderhouse
 
 Los alumnos pueden registrarse en la pagina, utilizando la solapa de Acceso y completando un formulario.
 Pueden iniciar sesion una vez registrados.
@@ -20,9 +18,7 @@ Ademas pueden verificar las clases en las que estuvieron presentes mediantes el 
 
 Las funcionalidades cambian cuando el usuario que se ingresa pertenece al staff.
 
-Usuario de prueba profesor (staff)
-Usuario: bautista
-contraseña: coderhouse
+Usuario de prueba profesor (staff) - Usuario: bautista - Contraseña: coderhouse
 
 El staff en la seccion de Publicaciones encuentra el boton "Administrar publicaciones" donde por formato CRUD puede eliminar y editar publicaciones del blog.
 
