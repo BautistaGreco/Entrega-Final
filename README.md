@@ -30,4 +30,6 @@ Toda la informacion proporcionada se almacena en una base de datos SQL.
 
 La web se encuentra disponible ingresando a la direccion: https://bautistagreco.pythonanywhere.com/AnatoApp
 
+Un video explicativo del funcionamiento de la web en el siguiente link: https://www.youtube.com/watch?v=A6anhcp0dJY
+
 
